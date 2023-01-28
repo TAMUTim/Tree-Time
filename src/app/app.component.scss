@@ -1,0 +1,19 @@
+@import '../styles.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    text-align: center;
+    .ground {
+        margin: 0;
+        padding: 0;
+    
+        background-color: $background-ground;
+        width: 100000px;
+        height: 4000px;
+    }
+}
+
