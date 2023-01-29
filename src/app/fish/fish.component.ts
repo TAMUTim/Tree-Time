@@ -50,14 +50,14 @@ export class FishComponent implements AfterViewInit, OnInit {
         let rad = this.currentDirection * (Math.PI / 180);
         let slope = Math.tan(rad);
 
-        while(this.x + this.BORDER_DISTANCE_BOUND > this.scrnWidth 
-        || this.x - this.BORDER_DISTANCE_BOUND < 0
-        || this.y + this.BORDER_DISTANCE_BOUND > this.scrnHeight
-        || this.y - this.BORDER_DISTANCE_BOUND < 0) {
-            this.currentDirection = (this.currentDirection + 10 + Math.floor(Math.random() * 20)) % 360;
+        // while(this.x + this.BORDER_DISTANCE_BOUND > this.scrnWidth 
+        // || this.x - this.BORDER_DISTANCE_BOUND < 0
+        // || this.y + this.BORDER_DISTANCE_BOUND > this.scrnHeight
+        // || this.y - this.BORDER_DISTANCE_BOUND < 0) {
+        //     this.currentDirection = (this.currentDirection + 10 + Math.floor(Math.random() * 20)) % 360;
             
-            return;
-        }
+        //     return;
+        // }
 
         // we want to move in the direction we are facing
         

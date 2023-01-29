@@ -14,7 +14,7 @@ const firebaseConfig = {
 
 
 function initApp() {
-var today = new Date();   
+
     // Listen for auth state changes.
     firebase.auth().onAuthStateChanged(function(user) {
       console.log('User state change detected from the Background script of the Chrome Extension:', user);
@@ -28,6 +28,7 @@ var today = new Date();
                 links.push(tab.url);
               });
               console.log("Putting db");
+              var today = new Date();   
               db.collection("users").doc(user.uid).set({
                 urls:links,
                 time: today.getTime()

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import anime from 'animejs';
-
-
+import { Component,OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 
 interface UrlResponse {
   newUrls: string[];
@@ -13,12 +12,13 @@ interface UrlObj {
   userId: number;
 }
 
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'greeting-root',
+  templateUrl: './greeting.component.html',
+  styleUrls: ['./greeting.component.scss']
 })
-export class AppComponent implements OnInit {
+export class GreetingComponent implements OnInit{
   title = 'Fish';
   existingUrls: UrlObj[] = [
     {
@@ -38,7 +38,14 @@ export class AppComponent implements OnInit {
       userId: 2,
     }
   ];
-
+  constructor(public auth: AngularFireAuth) {
+  }
+  login() {
+    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+  logout() {
+    this.auth.signOut();
+  }
   ngOnInit() {
     // subscribe to whatever endpoint the backend uses to pass in data
     // within that call merge the new urls into the old ones
