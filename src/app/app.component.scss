@@ -1,19 +1,8 @@
 @import '../styles.scss';
 
-* {
-    margin: 0;
-    padding: 0;
+.aquarium {
+    position: absolute;
+    background: $sea-blue;
+    width: 100%;
+    height: 100%;
 }
-
-.container {
-    text-align: center;
-    .ground {
-        margin: 0;
-        padding: 0;
-    
-        background-color: $background-ground;
-        width: 100000px;
-        height: 4000px;
-    }
-}
-
