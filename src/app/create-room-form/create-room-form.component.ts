@@ -21,7 +21,8 @@ export class CreateRoomFormComponent  implements OnInit{
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
   }
-  const temp = this.db.collection('rooms').doc(this.room.value).set({id:this.room.value,users:[]}).then(()=>{this.router.navigate(['/', 'game',this.room.value]);})
+  const blank = {}
+  const temp = this.db.collection('rooms').doc(this.room.value).set({id:this.room.value,users: blank}).then(()=>{this.router.navigate(['/', 'game',this.room.value]);})
     
   }
   ngOnInit() {}

@@ -17,6 +17,7 @@ import { WaitingRoomComponent } from './waiting-room/waiting-room.component';
 import { RoomFormComponent } from './room-form/room-form.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { CreateRoomFormComponent } from './create-room-form/create-room-form.component';
+import { TableComponent } from './table/table.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDQZDZvHw_A-C1JeaCoQf-wAuX1ktguOjw",
@@ -50,7 +51,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     WaitingRoomComponent,
     RoomFormComponent,
     LobbyComponent,
-    CreateRoomFormComponent
+    CreateRoomFormComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
