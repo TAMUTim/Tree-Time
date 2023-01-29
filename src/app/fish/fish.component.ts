@@ -21,8 +21,9 @@ export class FishComponent implements AfterViewInit, OnInit {
     y = -1;
 
     currentDirection = Math.floor(Math.random() * 360);
-    BORDER_DISTANCE_BOUND = 100;
+    BORDER_DISTANCE_BOUND = 50;
     TURN_MAX_DEGREE = 30;
+    DURATION = 1500 + Math.floor(Math.random() * 1000);
 
     @HostListener('window:resize', ['$event'])
     getScreenSize(event?) {
@@ -37,17 +38,17 @@ export class FishComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit(): void {
         // do something
-        let intervalid = setInterval(() => this.getNewPath(), 2000);
-        // clearInterval(intervalid);
-    }
-
-    getNewPath(): void {
         let element = document.getElementById(this.fishId);
         let position = element.getBoundingClientRect();
 
         this.x = position.left;
         this.y = position.top;
 
+        let intervalid = setInterval(() => this.getNewPath(), this.DURATION + 1000);
+        // clearInterval(intervalid);
+    }
+
+    getNewPath(): void {
         if(this.x % 2) {
             this.currentDirection = this.currentDirection + Math.floor(Math.random() * 10);
         } else {
@@ -55,38 +56,33 @@ export class FishComponent implements AfterViewInit, OnInit {
         }
         
         let rad = this.currentDirection * (Math.PI / 180);
-        let slope = Math.tan(rad);
-        let xOffset = 50 * Math.cos(slope);
-        let yOffset = 50 * Math.sin(slope);
+        let xOffset = 50 * Math.cos(rad);
+        let yOffset = 50 * Math.sin(rad);
 
-        console.log(this.scrnWidth, this.scrnHeight);
+        console.log(Math.floor(this.x), Math.floor(this.y), this.scrnWidth, this.scrnHeight);
         if(this.x + xOffset > this.scrnWidth - this.BORDER_DISTANCE_BOUND
         || this.x + xOffset < this.BORDER_DISTANCE_BOUND
         || this.y + yOffset > this.scrnHeight - this.BORDER_DISTANCE_BOUND
         || this.y + yOffset < this.BORDER_DISTANCE_BOUND) {
             this.currentDirection = (this.currentDirection + 180 - Math.floor(Math.random() * 20)) % 360;
             rad = this.currentDirection * (Math.PI / 180);
-            slope = Math.tan(rad);
-            xOffset = 50 * Math.cos(slope);
-            yOffset = 50 * Math.sin(slope);
+            xOffset = 50 * Math.cos(rad);
+            yOffset = 50 * Math.sin(rad);
         }
 
         // we want to move in the direction we are facing
         let target = '#' + this.fishId;
         anime({
             targets: document.getElementById(this.fishId),
-            translateX: 50 * Math.cos(slope),
-            translateY: 50 * Math.sin(slope),
-            duration: 2000,
+            translateX: 50 * Math.cos(rad),
+            translateY: 50 * Math.sin(rad),
+            duration: this.DURATION,
             loop: false,
             easing: 'linear'
         });
 
-        // element = document.getElementById(this.fishId);
-        // position = element.getBoundingClientRect();
-        // this.x = position.left;
-        // this.y = position.top;
-        // console.log("End for fish", this.fishId, this.x, this.y);
+        this.x = this.x + 50 * Math.cos(rad);
+        this.y = this.y + 50 * Math.sin(rad);
     }
 
     turnAround(slope): void {
