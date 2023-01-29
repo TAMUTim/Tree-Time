@@ -1,0 +1,38 @@
+.greeting-wrapper {
+    margin-top: 2em;
+    
+    .greeting-text {
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        font-size: 5em;
+    }
+}
+
+.introductory-wrapper {
+    text-align: center;
+    // font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 125px;
+
+    .application-name {
+        font-weight: bold;
+        font-size: 20em;
+        margin-top: 100px;
+    }
+}
+
+.action-wrapper {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+
+    .google-sign-in {
+        padding: 0;
+        border: none;
+        background: none;
+        border-radius: 4px;
+        height: 60px;
+        width: 300px;
+        background-color: #dd4b39;
+    }
+}

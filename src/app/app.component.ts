@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import anime from 'animejs';
 
-
-
 interface UrlResponse {
   newUrls: string[];
   userId: number;

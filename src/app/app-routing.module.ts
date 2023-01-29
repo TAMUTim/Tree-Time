@@ -2,14 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GreetingComponent } from './greeting.component';
 import { LobbyComponent } from './lobby/lobby.component';
-const routes: Routes = [{
+const routes: Routes = [
+{
   path: 'game/:room',
   component: LobbyComponent,
   runGuardsAndResolvers: 'paramsOrQueryParamsChange'
 },
-{path: '',
-component: GreetingComponent,
-runGuardsAndResolvers: 'paramsOrQueryParamsChange'}
+{
+  path: '',
+  component: GreetingComponent,
+  runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+}
 ];
 
 @NgModule({

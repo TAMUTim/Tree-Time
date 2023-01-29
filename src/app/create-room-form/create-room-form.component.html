@@ -1,4 +1,8 @@
-<label for="room">Name: </label>
-<input id="room" type="text" [formControl]="room">
-<button type="button" (click)="goToRoom()">Create room!</button>
-<p>Value: {{ room.value }}</p>
+<div class="wrapper">
+    <label for="room">Name: </label>
+    <input id="room" type="text" [formControl]="room">
+    <button type="button" (click)="goToRoom()">Create room!</button>
+    <p>Value: {{ room.value }}</p>
+</div>
+
+
