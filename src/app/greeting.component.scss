@@ -1,10 +1,13 @@
 .greeting-wrapper {
     margin-top: 2em;
-    
+    text-align: center;
+
     .greeting-text {
         font-family: 'Montserrat', sans-serif;
         text-align: center;
         font-size: 5em;
+        margin-bottom: 1.5em;
+        margin-top: 1em;
     }
 }
 

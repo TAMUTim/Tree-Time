@@ -62,8 +62,6 @@ export class LobbyComponent {
 
             });
 
-
-
             const room_doc = this.db.collection('rooms').doc(id);
             const user_doc = this.db.collection('users').doc(user.uid);
             const room_observer = room_doc.snapshotChanges().subscribe(()=>{
