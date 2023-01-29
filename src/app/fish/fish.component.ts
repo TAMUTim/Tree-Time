@@ -42,29 +42,33 @@ export class FishComponent implements AfterViewInit, OnInit {
     }
 
     getNewPath(): void {
-        console.log(this.scrnHeight, this.scrnWidth);
         let element = document.getElementById(this.fishId);
         let position = element.getBoundingClientRect();
 
         this.x = position.left;
         this.y = position.top;
 
+        if(this.x % 2) {
+            this.currentDirection = this.currentDirection + Math.floor(Math.random() * 10);
+        } else {
+            this.currentDirection = this.currentDirection - Math.floor(Math.random() * 10);
+        }
+        
         let rad = this.currentDirection * (Math.PI / 180);
         let slope = Math.tan(rad);
         let xOffset = 50 * Math.cos(slope);
         let yOffset = 50 * Math.sin(slope);
-        console.log(50 * Math.cos(slope), 50 * Math.sin(slope));
 
+        console.log(this.scrnWidth, this.scrnHeight);
         if(this.x + xOffset > this.scrnWidth - this.BORDER_DISTANCE_BOUND
-        || this.x - xOffset < this.BORDER_DISTANCE_BOUND
+        || this.x + xOffset < this.BORDER_DISTANCE_BOUND
         || this.y + yOffset > this.scrnHeight - this.BORDER_DISTANCE_BOUND
-        || this.y - yOffset < this.BORDER_DISTANCE_BOUND) {
+        || this.y + yOffset < this.BORDER_DISTANCE_BOUND) {
             this.currentDirection = (this.currentDirection + 180 - Math.floor(Math.random() * 20)) % 360;
             rad = this.currentDirection * (Math.PI / 180);
             slope = Math.tan(rad);
             xOffset = 50 * Math.cos(slope);
             yOffset = 50 * Math.sin(slope);
-            console.log("Running\n");
         }
 
         // we want to move in the direction we are facing
