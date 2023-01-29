@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import options from './app-routing.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FishComponent } from './fish/fish.component';
@@ -18,7 +19,7 @@ import { RoomFormComponent } from './room-form/room-form.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { CreateRoomFormComponent } from './create-room-form/create-room-form.component';
 import { TableComponent } from './table/table.component';
-
+import { routes } from './app-routing.module';
 const firebaseConfig = {
   apiKey: "AIzaSyDQZDZvHw_A-C1JeaCoQf-wAuX1ktguOjw",
   authDomain: "aquarium-16311.firebaseapp.com",
@@ -61,9 +62,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireAuthModule,
     AngularFirestoreModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })
   ],
-  providers: [],
+  providers: [options],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

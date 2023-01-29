@@ -1,2 +1,13 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>
 <p>lobby works!</p>
+<button type="button" (click)="goToRoom()">Back to Room Select</button>
 <app-table class = "container" *ngFor = "let item of names" [name]="item" [links]="pairings[item]"></app-table>

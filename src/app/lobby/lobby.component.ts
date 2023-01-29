@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, InMemoryScrollingOptions } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
+
 
 @Component({
   selector: 'app-lobby',
@@ -13,8 +14,16 @@ export class LobbyComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     public auth: AngularFireAuth,
-    public db: AngularFirestore
+    public db: AngularFirestore,
+    public router:Router
+
   ) { }
+  goToRoom() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+  }
+    this.router.navigate(['/']);
+  }
   names = [];
   pairings = {};
 
@@ -38,7 +47,7 @@ export class LobbyComponent {
               this.names=keys;
               for (const user_name of this.names)
               {                
-                const user_ref = this.db.collection('users').doc(user.uid);
+                const user_ref = this.db.collection('users').doc(user_name);
                 user_ref.get().subscribe((user_data)=>{
                   let dat = user_data.data();
                   let links = dat['urls'];

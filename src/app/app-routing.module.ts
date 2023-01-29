@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, provideRouter, withInMemoryScrolling } from '@angular/router';
 import { GreetingComponent } from './greeting.component';
 import { LobbyComponent } from './lobby/lobby.component';
-const routes: Routes = [{
+export const routes: Routes = [{
   path: 'game/:room',
   component: LobbyComponent,
   runGuardsAndResolvers: 'paramsOrQueryParamsChange'
@@ -17,3 +17,9 @@ runGuardsAndResolvers: 'paramsOrQueryParamsChange'}
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+const options = provideRouter(routes, withInMemoryScrolling({
+  scrollPositionRestoration: 'enabled',
+}))
+
+export default options
