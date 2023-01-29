@@ -21,7 +21,7 @@ export class FishComponent implements AfterViewInit, OnInit {
     y = -1;
 
     currentDirection = Math.floor(Math.random() * 360);
-    BORDER_DISTANCE_BOUND = 150;
+    BORDER_DISTANCE_BOUND = 100;
     TURN_MAX_DEGREE = 30;
 
     @HostListener('window:resize', ['$event'])
@@ -37,10 +37,12 @@ export class FishComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit(): void {
         // do something
-        this.getNewPath();
+        let intervalid = setInterval(() => this.getNewPath(), 2000);
+        // clearInterval(intervalid);
     }
 
     getNewPath(): void {
+        console.log(this.scrnHeight, this.scrnWidth);
         let element = document.getElementById(this.fishId);
         let position = element.getBoundingClientRect();
 
@@ -49,24 +51,23 @@ export class FishComponent implements AfterViewInit, OnInit {
 
         let rad = this.currentDirection * (Math.PI / 180);
         let slope = Math.tan(rad);
+        let xOffset = 50 * Math.cos(slope);
+        let yOffset = 50 * Math.sin(slope);
+        console.log(50 * Math.cos(slope), 50 * Math.sin(slope));
 
-        while(this.x + this.BORDER_DISTANCE_BOUND > this.scrnWidth 
-        || this.x - this.BORDER_DISTANCE_BOUND < 0
-        || this.y + this.BORDER_DISTANCE_BOUND > this.scrnHeight
-        || this.y - this.BORDER_DISTANCE_BOUND < 0) {
-            this.currentDirection = (this.currentDirection + 10 + Math.floor(Math.random() * 20)) % 360;
-            
-            return;
+        if(this.x + xOffset > this.scrnWidth - this.BORDER_DISTANCE_BOUND
+        || this.x - xOffset < this.BORDER_DISTANCE_BOUND
+        || this.y + yOffset > this.scrnHeight - this.BORDER_DISTANCE_BOUND
+        || this.y - yOffset < this.BORDER_DISTANCE_BOUND) {
+            this.currentDirection = (this.currentDirection + 180 - Math.floor(Math.random() * 20)) % 360;
+            rad = this.currentDirection * (Math.PI / 180);
+            slope = Math.tan(rad);
+            xOffset = 50 * Math.cos(slope);
+            yOffset = 50 * Math.sin(slope);
+            console.log("Running\n");
         }
 
         // we want to move in the direction we are facing
-        
-        // let endX = 50 * Math.cos(slope) + this.x;
-        // let endY = 50 * Math.sin(slope) + this.y;
-
-        // console.log("Start for fish", this.fishId, this.x, this.y);
-
-        // console.log("End Path:", path);
         let target = '#' + this.fishId;
         anime({
             targets: document.getElementById(this.fishId),
@@ -86,7 +87,6 @@ export class FishComponent implements AfterViewInit, OnInit {
 
     turnAround(slope): void {
         // turn around animation
-
 
     }
 
