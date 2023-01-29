@@ -79,11 +79,12 @@ export class LobbyComponent {
                 this.pairings={}
                 for (const user_name of this.names)
                 {                
-                  const user_ref = this.db.collection('users').doc(user.uid);
+                  const user_ref = this.db.collection('users').doc(user_name);
                   user_ref.get().subscribe((user_data)=>{
                     let dat = user_data.data();
                     let links = dat['urls'];
                     this.pairings[user_name] = links;
+                    console.log(user_name)
                   })
                 }
               });
