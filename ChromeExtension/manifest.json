@@ -3,10 +3,23 @@
   "name": "Tab URL Logger",
   "version": "1.0",
   "background": {
-    "scripts": ["scrape.js"]
+    "page": "background.html"
   },
   "permissions": [
     "tabs",
-    "storage"
-  ]
+    "storage",
+    "identity"
+  ],
+  "browser_action": {
+    "default_popup": "credentials.html"
+  },
+  "oauth2": {
+    "client_id": "1076310005415-hvev2dmfkbpd7ahi1df10p5u5npjehle.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  },
+  "key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhdOi93xqs0qoRHDozYnsi7O6plpoFDWf709Rxi48O0aQUtp9m7NrTWaLQdjvnm80iddEzRCaD90MRiZMZjpNGxfYkSIeZcrokCvr/MsWmqIkDvvJEW1hC3luQBa06egUIbc9vQ1ZT4B1TyNUaJaTRvdhuJFZw5A/2xfGDuayXOhUSZ4xhwrUuqcLzhzlZlQfyZDzC1WDdmkrH6iMXTK8ckCqR09EEVZdACPuNsjwZ5UPVzMuPgQbtdaoEsd4dM765ArIucumbZaJUFs3ekusZbAroxZ6a99MIGW+Q8+GCzYNdCLev7W4B/Td0SdhCeV8jsUiGfHawVcqxI0i+JV/QwIDAQAB",
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'"
 }
