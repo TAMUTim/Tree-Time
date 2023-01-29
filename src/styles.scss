@@ -2,3 +2,8 @@
 @import '~firebaseui/dist/firebaseui.css';
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 $sea-blue: #4D7EA8 !default;
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+  }
